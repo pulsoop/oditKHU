@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: CKFinder for Java - Web Application
+Implementation-Version: 2.6.2.1
+Archiver-Version: Plexus Archiver
+Built-By: CKSource - Frederico Knabben
+Implementation-Vendor-Id: com.ckfinder
+Created-By: Apache Maven 3.0.5
+Build-Jdk: 1.8.0_60
+Implementation-Vendor: CKSource - Frederico Knabben
+
