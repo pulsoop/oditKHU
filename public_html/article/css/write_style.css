@@ -1,13 +1,16 @@
 /**********************
 DEFAULT
 ***********************/
-
+html {
+	padding-left: 10%;
+	padding-right: 10%;
+}
 body {
-	padding-top: 100px;
+	padding-top: 150px;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 15px;
-	color: #637988;
 	line-height: 20px;
+
 }
 
 ul, ol {
@@ -184,16 +187,14 @@ input.search-input:focus{
 
 /* start da css for da buttons */
 .btn {
-  border-radius: 5px;
-  padding: 5% 15%;
-  font-size: 30px;
- font-family: 'Do Hyeon', sans-serif;
-  text-decoration: none;
-  color: #fff;
-  position: relative;
- 
-  min-width: auto;
-  min-height: auto;
+	border-radius: 5px;
+	font-size: 16px;
+	font-family: 'Do Hyeon', sans-serif;
+	text-decoration: none;
+	color: #fff;
+
+	min-width: auto;
+	min-height: auto;
 }
 
 .btn:active {
@@ -913,4 +914,10 @@ RESPONSIVE
 		padding: 20px 0;
 	}
 
+}
+
+/* write css 추가 */
+#keyword {
+	width : 240px;
+	padding-left: 10px;
 }
