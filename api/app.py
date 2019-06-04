@@ -26,5 +26,5 @@ if __name__ == "__main__":
     else:
         port = 8000
 
-    #app.run(debug=False, host='0.0.0.0', port=port)
-    app.run(debug=False, host='127.0.0.1', port=port)
+    #app.run(debug=False, host='0.0.0.0', port=port)    # for release
+    app.run(debug=False, host='127.0.0.1', port=port)   # for debug
