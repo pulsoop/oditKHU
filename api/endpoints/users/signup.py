@@ -18,13 +18,14 @@ class Signup(Resource):
 
         # db 
         db = database.db_connect()
-        sql = "INSERT INTO dbdbdp.user (`id`, `password`, `name`, `email`, `phone_number`) VALUES ('{}', '{}', '{}', '{}', '{}');".format(_id, _pw, _name, _email, _phone)
-        print(sql)
-        curs = db.cursor()
-        curs.execute(sql)
-        db.commit()
-
-        # db close
-        curs.close()
-        db.close()
-        
+        try:
+            sql = "INSERT INTO dbdbdp.user (`id`, `password`, `name`, `email`, `phone_number`) VALUES ('{}', '{}', '{}', '{}', '{}');".format(_id, _pw, _name, _email, _phone)
+            curs = db.cursor()
+            curs.execute(sql)
+            db.commit()
+        except:
+            abort(500, message='Internal server error.')
+        finally:
+            curs.close()
+            db.close()
+            return {'status': 200}
