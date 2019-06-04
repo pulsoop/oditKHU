@@ -6,6 +6,7 @@ from flask_restful import Api
 
 from endpoints.test import Test
 from endpoints.users.signin import Signin
+from endpoints.users.signup import Signup
 
 # Flask Setting
 app = Flask(__name__)
@@ -17,7 +18,7 @@ cors = CORS(app, resources={
 # Endpoints
 api.add_resource(Test, '/test')
 api.add_resource(Signin, '/signin')
-
+api.add_resource(Signup, '/signup')
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

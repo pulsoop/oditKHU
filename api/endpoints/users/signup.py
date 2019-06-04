@@ -18,7 +18,8 @@ class Signup(Resource):
 
         # db 
         db = database.db_connect()
-        sql = "INSERT INTO dbdbdp.user (`id`, `password`, `name`, `email`, `phone`) VALUES ('{}', '{}', '{}', '{}', '{}');".format(_id, _pw, _name, _email, _phone)
+        sql = "INSERT INTO dbdbdp.user (`id`, `password`, `name`, `email`, `phone_number`) VALUES ('{}', '{}', '{}', '{}', '{}');".format(_id, _pw, _name, _email, _phone)
+        print(sql)
         curs = db.cursor()
         curs.execute(sql)
         db.commit()
