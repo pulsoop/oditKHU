@@ -1,4 +1,5 @@
 import sys
+import time
 
 from flask import Flask
 from flask_cors import CORS
@@ -53,6 +54,17 @@ if __name__ == "__main__":
     else:
         port = 8000
         release = False
+
+    if release:
+        print('┌─────────────────────────────┐')
+        print('│ port = {} || RELEASE MODE │'.format(port))
+        print('└─────────────────────────────┘')
+    else:
+        print('┌───────────────────────────┐')
+        print('│ port = {} || DEBUG MODE │'.format(port))
+        print('└───────────────────────────┘')
+
+    time.sleep(0.5)
 
     if release:
         app.run(debug=False, host='0.0.0.0', port=port)    # for release
