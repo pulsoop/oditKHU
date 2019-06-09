@@ -4,8 +4,7 @@ from flask_restful import Resource, reqparse, abort
 
 import database
 
-#class LostItemInsert(Resource):
-class Test(Resource):
+class LostItemInsert(Resource):
     def post(self):
         req_json = request.get_json(force=True)
         _i_id = req_json['i_id']
