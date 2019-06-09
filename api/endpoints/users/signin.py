@@ -3,6 +3,7 @@ import bcrypt
 from flask import request
 from flask_restful import Resource, reqparse, abort
 
+import auth
 import database
 
 class Signin(Resource):
@@ -16,7 +17,7 @@ class Signin(Resource):
         
         # db 
         db = database.db_connect()
-        sql = "SELECT count(id), password, id, name FROM dbdbdp.user WHERE id=\'{}\'".format(_id)
+        sql = "SELECT count(id), password, u_id, id, name, email, phone_number FROM dbdbdp.user WHERE id=\'{}\'".format(_id)
         curs = db.cursor()
         curs.execute(sql)
         rows = curs.fetchall()
@@ -28,10 +29,20 @@ class Signin(Resource):
 
         # password check
         hashed = str(row[1]).encode('utf-8')
-        pw_flag = bcrypt.checkpw(_pw.encode('utf-8'), hashed)
+        try:
+            pw_flag = bcrypt.checkpw(_pw.encode('utf-8'), hashed)
+        except:
+            return {'status': 401, 'message': 'Error with id or password.'}, 401
 
         if int(row[0]) >= 1 or pw_flag:
-            return {'id': row[2], 'name': row[3]}, 200   # Return data as JSON Type
+            user = {
+                'u_id': row[2],
+                'id': row[3],
+                'name': row[4],
+                'email': row[5],
+                'phone': row[6]
+            }
+            return {'status': 200, 'access_token': auth.generateAccessToken(user)}
         else:
             return {'status': 401, 'message': 'Error with id or password.'}, 401
         
