@@ -26,7 +26,7 @@ class Signin(Resource):
         db.close()
 
         if int(row[0]) >= 1:
-            return {'id': row[1], 'name': row[2]}   # Return data as JSON Type
+            return {'id': row[1], 'name': row[2]}, 200   # Return data as JSON Type
         else:
-            return abort(401, message="Error with id or password.")   # 400 ERROR
+            return {'status': 401, 'message': 'Error with id or password.'}, 401
         
