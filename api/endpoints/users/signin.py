@@ -1,4 +1,5 @@
 import json
+import bcrypt
 from flask import request
 from flask_restful import Resource, reqparse, abort
 
@@ -11,11 +12,11 @@ class Signin(Resource):
             _id = req_json['id']
             _pw = req_json['password']
         except KeyError:
-            abort(400, message='Invalid parameter.')
-
+            return {'status': 400, 'message': 'Invalid parameter.'}, 400
+        
         # db 
         db = database.db_connect()
-        sql = "SELECT count(id), id, name FROM dbdbdp.user WHERE id=\'{}\' AND password=\'{}\'".format(_id, _pw)
+        sql = "SELECT count(id), password, id, name FROM dbdbdp.user WHERE id=\'{}\'".format(_id)
         curs = db.cursor()
         curs.execute(sql)
         rows = curs.fetchall()
@@ -25,8 +26,12 @@ class Signin(Resource):
         curs.close()
         db.close()
 
-        if int(row[0]) >= 1:
-            return {'id': row[1], 'name': row[2]}, 200   # Return data as JSON Type
+        # password check
+        hashed = str(row[1]).encode('utf-8')
+        pw_flag = bcrypt.checkpw(_pw.encode('utf-8'), hashed)
+
+        if int(row[0]) >= 1 or pw_flag:
+            return {'id': row[2], 'name': row[3]}, 200   # Return data as JSON Type
         else:
             return {'status': 401, 'message': 'Error with id or password.'}, 401
         
