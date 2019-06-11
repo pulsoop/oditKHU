@@ -37,14 +37,14 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">경희대학교 학번</label>
-                                    <input class="input--style-4" type="text" name="studentid">
+                                    <label class="label">아이디</label>
+                                    <input class="input--style-4" type="text" name="id" v-modal="id">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">이름</label>
-                                    <input class="input--style-4" type="text" name="name">
+                                    <input class="input--style-4" type="text" name="name" v-modal="name">
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">비밀번호</label>
-                                    <input class="input--style-4" type="password" name="password" id="password">
+                                    <input class="input--style-4" type="password" name="password" id="password" v-modal="password">
                                 </div>
                             </div>
                             <div class="col-2">
@@ -68,13 +68,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">이메일</label>
-                                    <input class="input--style-4" type="email" name="email">
+                                    <input class="input--style-4" type="email" name="email" v-modal="email">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">핸드폰 번호</label>
-                                    <input class="input--style-4" type="text" name="phone">
+                                    <input class="input--style-4" type="text" name="phone" v-modal="phone">
                                 </div>
                             </div>
                         </div>
@@ -93,6 +93,11 @@
     <script src="../vendor/select2/select2.min.js"></script>
     <script src="../vendor/datepicker/moment.min.js"></script>
     <script src="../vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="../js/join_app.js"></script>
 
     <!-- Main JS-->
     <script src="../js/global.js"></script>
