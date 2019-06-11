@@ -70,9 +70,9 @@
 			<div id="date">날짜 : </div>
 			<div id="date_text">{{ date }}</div>
 			<div id="keyword">종류 : </div>
-			<div id="keyword_text"></div>
+			<div id="keyword_text">기타</div>
 			<div id="location">위치 : </div>
-			<div id="location_text"></div>
+			<div id="location_text">외국어대학 앞</div>
 			<div id="image" >
 				<img src="../img/wlqmfl.jpg">
 			</div>
@@ -83,10 +83,10 @@
 		<form>
 			<div class="form-group">
 				<label for="inputEmail4" style="font-family: 'Noto Serif KR', serif;">댓글 입력</label>
-				<input type="title" class="form-control" id="title">
+				<input type="title" class="form-control" id="title" name="title">
 			</div>
 			<div id="buttons" style="width:50px;">
-				<button type="submit" class="btn yellow">댓글 등록</button>
+				<button type="submit" class="btn yellow" id="comment">댓글 등록</button>
 			</div>
 		</form>
 
@@ -94,7 +94,7 @@
 		<div id="comment_wrapper">
 			<div v-for="comment in comments">
 				<div id="com_writer">{{comment.author}}</div>
-				<div id="comment">{{comment.content}}</div>
+				<div id="comment">{{comment.comment}}</div>
 			</div>
 		</div>
 
@@ -110,6 +110,7 @@
 		<!-- Latest compiled and minified JavaScript Bootstrap-->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		
 		<!-- Custom JS -->
 		<script src="../js/view_app.js"></script>
@@ -136,6 +137,13 @@
 			var board = getParameterByName('board');
 			var i_id = getParameterByName('id');
 
+			var uri = '';
+			if (board == 'get' || board == 'GET') {
+				uri = 'getitems';
+			} else if (board == 'lost' || board == 'LOST') {
+				uri = 'lostitems';
+			}
+
 			new Vue({
 				el: '#app',
 				data: {
@@ -145,7 +153,7 @@
 					content: ""
 				},
 				created() {
-					fetch('/api/boards/getitems/' + i_id)
+					fetch('/api/boards/' + uri + '/' + i_id)
 					.then((response) => {
 						if(response.ok) {
 						return response.json();
@@ -167,7 +175,7 @@
 					comments: []
 				},
 				created() {
-					fetch('/api/boards/getitems/' + i_id + '/comments')
+					fetch('/api/boards/' + uri + '/' + i_id + '/comments')
 					.then((response) => {
 						if(response.ok) {
 						return response.json();
@@ -177,12 +185,41 @@
 					.then((json) => {
 						for(let temp in json.comments) {
 							this.comments.push({
-								author: json.comment[temp].author_name,
-								comment: json.comment[temp].comment
+								author: json.comments[temp].author_name,
+								comment: json.comments[temp].comment
 							});
 						}
+						console.log(this.comments);
 					})
 				}
+			});
+
+			const formEl = document.querySelector(`form`);
+			formEl.addEventListener(`submit`, (e) => {
+			e.preventDefault();
+
+			  //axios를 이용해 post형식으로 서버에 정보 확인.
+			  axios.post("/api/boards/" + uri + "/" + i_id + "/comments" , {
+			    u_id: 1,
+			    content: $('input[name=title]').val()
+			  })
+			    //성공시 logged_in.html로 redirect
+			    .then(function (response) {
+			      if(response.status == 200)
+			      {
+			        console.log(response);
+			        console.log("success");
+			      }      
+			    })
+			    //실패시 페이지 reload
+			    .catch(function (error) {
+			      if(error.status != 200)
+			      {
+			        console.log(error);
+			        console.log("fail");
+			      }
+			      
+			    })
 			});
 		</script>
 	</body>
