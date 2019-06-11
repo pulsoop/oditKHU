@@ -10,7 +10,7 @@ class LostItemInfo(Resource):
     def get(self):
         # db
         db = database.db_connect()  # connection객체
-        sql = 'SELECT u.id, title, register_date, lost_date FROM lostitem AS li JOIN user AS u ON li.u_id = u.u_id'
+        sql = 'SELECT u.id, title, register_date, lost_date, i_id FROM lostitem AS li JOIN user AS u ON li.u_id = u.u_id'
         curs = db.cursor()
         curs.execute(sql)
 
@@ -27,7 +27,8 @@ class LostItemInfo(Resource):
                 'author': row[0],
                 'title': row[1],
                 'register_date': row[2].strftime('%Y-%m-%d %H:%M:%S'),
-                'lost_date': str(row[3])
+                'lost_date': str(row[3]),
+                'url': 'http://oditkhu.dasom.io/page/view.html?board=lost&id={}'.format(row[4])
             }
             result['items'].append(temp)
         
