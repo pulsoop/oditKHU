@@ -71,14 +71,7 @@
 				<div class="bg-4">
 					<div class="container" style="max-width:100%">
 						<div class="row" id='row'>
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox" id="app">{{ title }}</div>
-								</div>
-							</div>
-
-							<div v-for='article in articles'>
+							<div v-for='article in articles' class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
 								<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
 								<div class="titlebox" id="app">{{article.title}}</div>
 							</div>
@@ -105,6 +98,29 @@
 				</script>
 
 				<script src="https://unpkg.com/vue"></script>
-				<script src="../js/board_get_app.js"></script>
+				<script>
+					new Vue({
+						el: '#row',
+						data: {
+							articles: []
+						},
+						created() {
+							fetch('/api/boards/getitems')
+							.then((response) => {
+								if(response.ok) {
+								return response.json();
+								}
+								throw new Error('Network response was not ok');
+							})
+							.then((json) => {
+								for (let temp in json.items) {
+									this.articles.push({
+										title: json.items[temp].title
+									})
+								}
+							})
+						}
+						});
+				</script>
 			</body>
 			</html>
