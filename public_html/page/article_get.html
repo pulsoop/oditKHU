@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>게시물 등록</title>
+	<title>습득물 등록</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,20 +61,20 @@
 	</header>
 
 	<!-- 글쓰기 영역 -->
-  	<form>
+  	<form id="app">
   		<div class="form-row">
     		<div class="form-group col-md-6">
       			<label for="inputEmail4">제목</label>
-      			<input type="title" class="form-control" id="title">
+      			<input type="title" class="form-control" id="title" name="title" v-model="title">
     		</div>
     		<div class="form-group col-md-6">
       			<label for="inputPassword4">위치</label>
-      			<input type="location" class="form-control" id="location">
+      			<input type="location" class="form-control" id="location" name="location" v-model="location">
     		</div>
   		</div>
 	  	<div class="form-group col-md-12">
 	    	<label for="exampleFormControlSelect1">물건 종류</label>
-	    	<select class="form-control" id="exampleFormControlSelect1">
+	    	<select class="form-control" id="exampleFormControlSelect1" name="type" v-model="type">
 		      	<option value="0">의류/화장품</option>
 		      	<option value="1">전자기기</option>
 		      	<option value="2">도서</option>
@@ -84,24 +84,26 @@
 	  	</div> 		
   		<div class="form-group col-md-12">
     		<label for="exampleFormControlTextarea1">내용 작성</label>
-    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="content" v-model="content"></textarea>
   		</div>
   		<div class="form-group col-md-12">
     		<label for="exampleFormControlFile1">사진 첨부</label>
-    		<input type="file" class="form-control-file" id="exampleFormControlFile1">
+    		<input type="file" class="form-control-file" id="exampleFormControlFile1" name="img">
   		</div>
   		<div id="buttons" style="width:50px; float:right;">
-			<button type="submit" class="btn yellow">글쓰기</button>
+			<button class="btn yellow" v-on:click = "write_submit" type="submit">글쓰기</button>
 		</div>
 	</form>
 
 	<!-- Scripts -->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="./js/smooth-scroll.min.js"></script>
-	<script type="text/javascript" src="./js/modernizr.mq.js"></script>
-	<script type="text/javascript" src="./js/mixitup.min.js"></script>
-	<script type="text/javascript" src="./js/slick.min.js"></script>
-	<script type="text/javascript" src="./js/write_main.js"></script>
+	<script type="text/javascript" src="../js/smooth-scroll.min.js"></script>
+	<script type="text/javascript" src="../js/modernizr.mq.js"></script>
+	<script type="text/javascript" src="../js/mixitup.min.js"></script>
+	<script type="text/javascript" src="../js/slick.min.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 	<!-- Latest compiled and minified JavaScript Bootstrap-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -116,6 +118,35 @@
 		function closeNav() {
   		document.getElementById("mySidenav").style.width = "0";
 		}
+
+		const formEl = document.querySelector(`form`);
+		formEl.addEventListener(`submit`, (e) => {
+		  e.preventDefault();
+		  //axios를 이용해 post형식으로 서버에 정보 확인.
+		  axios.post("/api/boards/getitems", {
+		  	u_id: "1",
+		    title: $('input[name=title]').val(),
+		    content: $('textarea[name=content]').val(),
+		    c_id: "10"
+		  })
+		    //성공시 logged_in.html로 redirect
+		    .then(function (response) {
+		      if(response.status == 200)
+		      {
+		        console.log(response);
+		        console.log("success");
+		      }      
+		    })
+		    //실패시 페이지 reload
+		    .catch(function (error) {
+		      if(error.status != 200)
+		      {
+		        console.log(error);
+		        console.log("fail");
+		      }
+		      
+		    })
+		});
 	</script>
 </body>
 </html>

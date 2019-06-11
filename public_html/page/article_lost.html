@@ -1,0 +1,152 @@
+<html>
+<head>
+	<title>분실물 등록</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free singlepage web template created by GraphBerry">
+    <meta name="keywords" content="HTML5, Bootstrap 3, CSS3, javascript, PHP, Responsive, Mobile">
+    <meta name="author" content="GraphBerry.com"/>
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600,600i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap&subset=korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Yeon+Sung&display=swap&subset=korean" rel="stylesheet">
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" href="../css/write_style.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+     <!-- header -->
+	<header id="header">
+		
+		<!-- Section title -->
+		<h1 class="sr-only">Molly | Home page</h1>
+		
+		<nav id="main-navigation" class="navbar navbar-default navbar-fixed-top">
+		  <!-- Section title -->
+		  <h1 class="sr-only">Main navigation</h1>
+
+		  <div class="container">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <div id="mySidenav" class="sidenav">
+ 					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+ 					<a href="./mypage.html">My page</a>
+  					<a href="./board_lost.html">찾아줘KHU</a>
+ 					<a href="./board_get.html">찾아가KHU</a>
+  					<a href="./board_cmplt.html">해결했KHU</a>
+   					<a href="./lostcen.html">분실물센터</a>
+					</div>
+					<div style="float: left; padding: 35px 0 0 10px;"><span style="font-size:30px;cursor:pointer" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></span> </div>
+					<div style="float: right;"><a id="brand-mobile" class="navbar-brand navbar-brand-center smoothScroll" href="#home">
+		       			<img alt="Molly" src="../img/svg/logo.png"></div>	      		
+		      		</a>
+		   		</div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="main-navbar">
+			  <ul class="nav navbar-nav">
+		      	<li id="brand-desktop">
+					<a class="navbar-brand smoothScroll" href="#home">
+						<img alt="Molly" src="../img/svg/logo.png">
+					</a>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container -->
+		</nav>
+
+	</header>
+
+	<!-- 글쓰기 영역 -->
+  	<form id="app">
+  		<div class="form-row">
+    		<div class="form-group col-md-6">
+      			<label for="inputEmail4">제목</label>
+      			<input type="title" class="form-control" id="title" name="title" v-model="title">
+    		</div>
+    		<div class="form-group col-md-6">
+      			<label for="inputPassword4">위치</label>
+      			<input type="location" class="form-control" id="location" name="location" v-model="location">
+    		</div>
+  		</div>
+	  	<div class="form-group col-md-12">
+	    	<label for="exampleFormControlSelect1">물건 종류</label>
+	    	<select class="form-control" id="exampleFormControlSelect1" name="type" v-model="type">
+		      	<option value="0">의류/화장품</option>
+		      	<option value="1">전자기기</option>
+		      	<option value="2">도서</option>
+		      	<option value="3">지갑</option>
+		      	<option value="4">기타</option>
+	    	</select>
+	  	</div> 		
+  		<div class="form-group col-md-12">
+    		<label for="exampleFormControlTextarea1">내용 작성</label>
+    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="content" v-model="content"></textarea>
+  		</div>
+  		<div class="form-group col-md-12">
+    		<label for="exampleFormControlFile1">사진 첨부</label>
+    		<input type="file" class="form-control-file" id="exampleFormControlFile1" name="img">
+  		</div>
+  		<div id="buttons" style="width:50px; float:right;">
+			<button class="btn yellow" v-on:click = "write_submit" type="submit">글쓰기</button>
+		</div>
+	</form>
+
+	<!-- Scripts -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../js/smooth-scroll.min.js"></script>
+	<script type="text/javascript" src="../js/modernizr.mq.js"></script>
+	<script type="text/javascript" src="../js/mixitup.min.js"></script>
+	<script type="text/javascript" src="../js/slick.min.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<!-- Latest compiled and minified JavaScript Bootstrap-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<!-- Custom JS -->
+	<script src="../js/custom.js"></script>
+	<script>
+		function openNav() {
+  		document.getElementById("mySidenav").style.width = "250px";
+		}
+
+		function closeNav() {
+  		document.getElementById("mySidenav").style.width = "0";
+		}
+
+		const formEl = document.querySelector(`form`);
+		formEl.addEventListener(`submit`, (e) => {
+		  e.preventDefault();
+		  //axios를 이용해 post형식으로 서버에 정보 확인.
+		  axios.post("/api/boards/lostitems", {
+		  	u_id: "1",
+		    title: $('input[name=title]').val(),
+		    content: $('textarea[name=content]').val(),
+		    c_id: "10"
+		  })
+		    //성공시 logged_in.html로 redirect
+		    .then(function (response) {
+		      if(response.status == 200)
+		      {
+		        console.log(response);
+		        console.log("success");
+		      }      
+		    })
+		    //실패시 페이지 reload
+		    .catch(function (error) {
+		      if(error.status != 200)
+		      {
+		        console.log(error);
+		        console.log("fail");
+		      }
+		      
+		    })
+		});
+	</script>
+</body>
+</html>
