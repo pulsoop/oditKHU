@@ -70,74 +70,17 @@
 
 				<div class="bg-4">
 					<div class="container" style="max-width:100%">
-						<div class="row">
+						<div class="row" id='row'>
 							<div>
 								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
 									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
 									<div class="titlebox" id="app">{{ title }}</div>
 								</div>
 							</div>
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
 
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
+							<div v-for='article in articles'>
+								<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
+								<div class="titlebox" id="app">{{article.title}}</div>
 							</div>
 						</div><!--/row-->
 					</div><!--/container-->
@@ -145,7 +88,6 @@
 
 				<!-- script references -->
 				<script src="https://unpkg.com/vue/dist/vue.js"></script>
-				<script src="../js/board_app.js"></script>
 				<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 				<script src="../js/bootstrap.min.js"></script>
 				<script src="https://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
@@ -161,5 +103,8 @@
 						document.getElementById("mySidenav").style.width = "0";
 					}
 				</script>
+
+				<script src="https://unpkg.com/vue"></script>
+				<script src="../js/board_get_app.js"></script>
 			</body>
 			</html>

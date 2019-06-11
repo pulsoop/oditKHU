@@ -1,4 +1,5 @@
 import json
+import datetime
 from flask import request
 from flask_restful import Resource, reqparse, abort
 
@@ -25,8 +26,8 @@ class LostItemInfo(Resource):
             temp = {
                 'author': row[0],
                 'title': row[1],
-                'register_date': row[2],
-                'get_date': row[3]
+                'register_date': row[2].strftime('%Y-%m-%d %H:%M:%S'),
+                'lost_date': row[3].strftime('%Y-%m-%d %H:%M:%S')
             }
             result['items'].append(temp)
         

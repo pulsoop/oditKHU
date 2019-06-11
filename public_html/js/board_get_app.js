@@ -1,10 +1,17 @@
-var app = new Vue({
-  el: '#app', // 어떤 엘리먼트에 적용을 할 지 정합니다
-  // data 는 해당 뷰에서 사용할 정보를 지닙니다
-  data: {
-    title: '제목입니다!'
-  }   
+new Vue({
+  el: '#row',
+  created() {
+    fetch('/api/boards/getitems')
+      .then((response) => {
+        if(response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok');
+      })
+      .then((json) => {
+        this.posts.push({
+          title: json.title
+        })
+      })
+  }
 });
-
-
-
