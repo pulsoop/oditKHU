@@ -31,11 +31,11 @@
 					<div class="navbar-header">
 						<div id="mySidenav" class="sidenav">
 							<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-							<a href="./mypage.html">My page</a>
-							<a href="./board_lost.html">찾아줘KHU</a>
-							<a href="./board_get.html">찾아가KHU</a>
-							<a href="./board_cmplt.html">해결했KHU</a>
-							<a href="./lostcen.html">분실물센터</a>
+							<a href="#">My page</a>
+							<a href="#">찾아줘KHU</a>
+							<a href="#">찾아가KHU</a>
+							<a href="#">해결했KHU</a>
+							<a href="#">분실물센터</a>
 						</div>
 						<div style="float: left; padding: 35px 0 0 10px;"><span style="font-size:30px;cursor:pointer" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></span> </div>
 						<div style="float: right;"><a id="brand-mobile" class="navbar-brand navbar-brand-center smoothScroll" href="#home">
@@ -63,7 +63,6 @@
 					<input class="search-input inactive" type="text" placeholder="I'm looking for..."/>
 					<button class="button button-brand-primary button-search">Search</button>
 				</div>
-				<div><button class="btn yellow" href="./article.html" >글쓰기</button></div>
 			</div>
 
 			<!-- Wrap all page content here -->
@@ -71,74 +70,10 @@
 
 				<div class="bg-4">
 					<div class="container" style="max-width:100%">
-						<div class="row">
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox" id="app">{{ title }}</div>
-								</div>
-							</div>
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
-							</div>
-
-							<div>
-								<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-									<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-									<div class="titlebox">text</div>
-								</div>
+						<div class="row" id='row'>
+							<div v-for='article in articles' class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
+								<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
+								<div class="titlebox" id="app"><a href="{{article.url}}">{{article.title}}</a></div>
 							</div>
 						</div><!--/row-->
 					</div><!--/container-->
@@ -146,7 +81,6 @@
 
 				<!-- script references -->
 				<script src="https://unpkg.com/vue/dist/vue.js"></script>
-				<script src="../js/board_app.js"></script>
 				<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 				<script src="../js/bootstrap.min.js"></script>
 				<script src="https://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
@@ -162,7 +96,32 @@
 						document.getElementById("mySidenav").style.width = "0";
 					}
 				</script>
-				<script src="https://unpkg.com/vue/dist/vue.js"></script>
-				<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+				<script src="https://unpkg.com/vue"></script>
+				<script>
+					new Vue({
+						el: '#row',
+						data: {
+							articles: []
+						},
+						created() {
+							fetch('/api/boards/lostitems')
+							.then((response) => {
+								if(response.ok) {
+								return response.json();
+								}
+								throw new Error('Network response was not ok');
+							})
+							.then((json) => {
+								for (let temp in json.items) {
+									this.articles.push({
+										title: json.items[temp].title,
+										url: json.items[temp].url
+									})
+								}
+							})
+						}
+						});
+				</script>
 			</body>
 			</html>
