@@ -5,7 +5,7 @@ from flask_restful import Resource, reqparse, abort
 import database
 
 #lostitem ->  completeitem(i_id로 어떤거 옮길건지 선택)
-class LostitemComplete(Resource):
+class LostItemComplete(Resource):
 
     def post(self):
         req_json = request.get_json(force=True)
