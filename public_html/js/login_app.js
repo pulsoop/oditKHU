@@ -19,7 +19,10 @@ formEl.addEventListener(`submit`, (e) => {
       {
         console.log(response);
         console.log("success");
-    }      
+        localStorage.setItem('ID', user_input_id);
+        localStorage.setItem('password', user_input_pw);
+        location.replace("../index.html");
+      }      
     })
     //실패시 페이지 reload
     .catch(function (error) {
