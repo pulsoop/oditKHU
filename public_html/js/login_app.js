@@ -9,7 +9,7 @@ formEl.addEventListener(`submit`, (e) => {
 	console.log(user_input_pw);
 
 	//axios를 이용해 post형식으로 서버에 정보 확인.
-	axios.post("api.oditkhu.dasom.io/signin", {
+	axios.post("/api/signin", {
 		id: $('input[name=id]').val(),
 		password: $('input[name=password]').val()
 	})
@@ -22,10 +22,10 @@ formEl.addEventListener(`submit`, (e) => {
 		})
 		//실패시 페이지 reload
 		.catch(function (error) {
-			if(error.status == 400)
+			if(error.status == 401)
 			{
-				console.log(error);
 				console.log("fail");
+				console.log(error);
 			}
 		})
 });

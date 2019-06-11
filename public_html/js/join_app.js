@@ -15,7 +15,7 @@ formEl.addEventListener(`submit`, (e) => {
 	console.log(user_phone);
 
 	//axios를 이용해 post형식으로 서버에 정보 확인.
-	axios.post("http://api.oditkhu.dasom.io/signup", {
+	axios.post("/api/signup", {
 		id: $('input[name=id]').val(),
 		name: $('input[name=name]').val(),
 		password: $('input[name=password]').val(),
