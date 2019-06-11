@@ -32,7 +32,8 @@ from endpoints.categories.categoryCompleteItem import CategoryCompleteItem
 app = Flask(__name__)
 api = Api(app)
 cors = CORS(app, resources={
-    r"/*": {"origin": "*"}
+    r"/*": {"origin": "*"},
+    r"/api/*": {"origin": "*"}
 })
 
 # Endpoints - test
@@ -50,7 +51,7 @@ api.add_resource(GetItemComplete, '/boards/getitems/<int:i_id>/complete') # geti
 api.add_resource(LostItemInfo, '/boards/lostitems')   # losttitem 목록
 api.add_resource(LostItemInsert, '/boards/lostitems') # lostitem 추가
 api.add_resource(LostItemArticle, '/boards/lostitems/<int:i_id>') # lostitem 게시글 상세
-api.add_resource(GetItemComplete, '/boards/lostitems/<int:i_id>/complete') # lostitem 게시글 완료 상태로 변경
+api.add_resource(LostItemComplete, '/boards/lostitems/<int:i_id>/complete') # lostitem 게시글 완료 상태로 변경
 
 # Endpoints - comments
 api.add_resource(GetItemComment, '/boards/getitems/<int:i_id>/comments')    # getitem 게시글의 댓글 목록

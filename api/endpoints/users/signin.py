@@ -29,12 +29,13 @@ class Signin(Resource):
 
         # password check
         hashed = str(row[1]).encode('utf-8')
+        pw_flag = False
         try:
             pw_flag = bcrypt.checkpw(_pw.encode('utf-8'), hashed)
         except:
             return {'status': 401, 'message': 'Error with id or password.'}, 401
 
-        if int(row[0]) >= 1 or pw_flag:
+        if int(row[0]) >= 1 and pw_flag:
             user = {
                 'u_id': row[2],
                 'id': row[3],
