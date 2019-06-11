@@ -13,7 +13,7 @@ from endpoints.users.signup import Signup
 from endpoints.boards.getItemInfo import GetItemInfo
 from endpoints.boards.getItemInsert import GetItemInsert
 from endpoints.boards.getItemArticle import GetItemArticle
-from endpoints.boards.getItemComplete import GetItemComplete 
+from endpoints.boards.getItemComplete import GetItemComplete  
 from endpoints.boards.lostItemInfo import LostItemInfo
 from endpoints.boards.lostItemInsert import LostItemInsert
 from endpoints.boards.lostItemArticle import LostItemArticle
@@ -46,9 +46,11 @@ api.add_resource(Signup, '/signup')
 api.add_resource(GetItemInfo, '/boards/getitems')   # getitem 목록
 api.add_resource(GetItemInsert, '/boards/getitems') # getitem 추가
 api.add_resource(GetItemArticle, '/boards/getitems/<int:i_id>') # getitem 게시글 상세
+api.add_resource(GetItemComplete, '/boards/getitems/<int:i_id>/complete') # getitem 게시글 완료 상태로 변경
 api.add_resource(LostItemInfo, '/boards/lostitems')   # losttitem 목록
 api.add_resource(LostItemInsert, '/boards/lostitems') # lostitem 추가
 api.add_resource(LostItemArticle, '/boards/lostitems/<int:i_id>') # lostitem 게시글 상세
+api.add_resource(GetItemComplete, '/boards/lostitems/<int:i_id>/complete') # lostitem 게시글 완료 상태로 변경
 
 # Endpoints - comments
 api.add_resource(GetItemComment, '/boards/getitems/<int:i_id>/comments')    # getitem 게시글의 댓글 목록
