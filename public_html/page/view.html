@@ -63,16 +63,16 @@
 		</header>
 
 		<!-- 게시물 보기 영역 -->
-		<div>
+		<div id="app">
 			<div id="title">{{ title }}</div>
 			<div id="writer">작성 : </div>
 			<div id="writer_text">{{ name }}</div>
 			<div id="date">날짜 : </div>
 			<div id="date_text">{{ date }}</div>
 			<div id="keyword">종류 : </div>
-			<div id="keyword_text">{{ keyword }}</div>
+			<div id="keyword_text"></div>
 			<div id="location">위치 : </div>
-			<div id="location_text">{{ location }}</div>
+			<div id="location_text"></div>
 			<div id="image" >
 				<img src="../img/wlqmfl.jpg">
 			</div>
@@ -91,9 +91,11 @@
 		</form>
 
 		<!-- 댓글 보기 -->
-		<div>
-			<div id="com_writer">댓글작성자</div>
-			<div id="comment">어 저 그거 어디에서 본 것 같아요</div>
+		<div id="comment_wrapper">
+			<div v-for="comment in comments">
+				<div id="com_writer">{{comment.author}}</div>
+				<div id="comment">{{comment.content}}</div>
+			</div>
 		</div>
 
 
@@ -120,6 +122,68 @@
 			function closeNav() {
 				document.getElementById("mySidenav").style.width = "0";
 			}
+		</script>
+
+		<script src="https://unpkg.com/vue"></script>
+		<script>
+			function getParameterByName(name) {
+				name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+				var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+					results = regex.exec(location.search);
+				return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+
+			var board = getParameterByName('board');
+			var i_id = getParameterByName('id');
+
+			new Vue({
+				el: '#app',
+				data: {
+					title: "",
+					name: "",
+					date: "",
+					content: ""
+				},
+				created() {
+					fetch('/api/boards/getitems/' + i_id)
+					.then((response) => {
+						if(response.ok) {
+						return response.json();
+						}
+						throw new Error('Network response was not ok');
+					})
+					.then((json) => {
+						this.title = json.title;
+						this.content = json.content;
+						this.date = json.register_date;
+						this.name = json.author_name;
+					})
+				}
+			});
+
+			new Vue({
+				el: '#comment_wrapper',
+				data: {
+					comments: []
+				},
+				created() {
+					fetch('/api/boards/getitems/' + i_id + '/comments')
+					.then((response) => {
+						if(response.ok) {
+						return response.json();
+						}
+						throw new Error('Network response was not ok');
+					})
+					.then((json) => {
+						for(let temp in json.comments) {
+							this.comments.push({
+								author: json.comment[temp].author_name,
+								comment: json.comment[temp].comment
+							});
+						}
+					})
+				}
+			});
 		</script>
 	</body>
 	</html>
