@@ -10,7 +10,7 @@ class GetItemInfo(Resource):
     def get(self):
         # db
         db = database.db_connect()  # connection객체
-        sql = 'SELECT u.id, title, register_date, get_date FROM getitem AS gi JOIN user AS u ON gi.u_id = u.u_id'
+        sql = 'SELECT u.id, title, register_date, get_date, i_id FROM getitem AS gi JOIN user AS u ON gi.u_id = u.u_id'
         curs = db.cursor()
         curs.execute(sql)
 
@@ -27,7 +27,8 @@ class GetItemInfo(Resource):
                 'author': row[0],
                 'title': row[1],
                 'register_date': row[2].strftime('%Y-%m-%d %H:%M:%S'),
-                'get_date': str(row[3])
+                'get_date': str(row[3]),
+                'url': 'http://oditkhu.dasom.io/page/view.html?board=get&id={}'.format(row[4])
             }
             result['items'].append(temp)
         
