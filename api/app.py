@@ -13,9 +13,11 @@ from endpoints.users.signup import Signup
 from endpoints.boards.getItemInfo import GetItemInfo
 from endpoints.boards.getItemInsert import GetItemInsert
 from endpoints.boards.getItemArticle import GetItemArticle
+from endpoints.boards.getItemComplete import GetItemComplete 
 from endpoints.boards.lostItemInfo import LostItemInfo
 from endpoints.boards.lostItemInsert import LostItemInsert
 from endpoints.boards.lostItemArticle import LostItemArticle
+from endpoints.boards.lostItemComplete import LostItemComplete
 
 from endpoints.comments.getItemComment import GetItemComment
 from endpoints.comments.getItemCommentInsert import GetItemCommentInsert
