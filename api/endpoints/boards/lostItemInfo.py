@@ -27,7 +27,7 @@ class LostItemInfo(Resource):
                 'author': row[0],
                 'title': row[1],
                 'register_date': row[2].strftime('%Y-%m-%d %H:%M:%S'),
-                'lost_date': row[3].strftime('%Y-%m-%d %H:%M:%S')
+                'lost_date': str(row[3])
             }
             result['items'].append(temp)
         
