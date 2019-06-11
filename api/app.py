@@ -17,6 +17,11 @@ from endpoints.boards.lostItemInfo import LostItemInfo
 from endpoints.boards.lostItemInsert import LostItemInsert
 from endpoints.boards.lostItemArticle import LostItemArticle
 
+from endpoints.comments.getItemComment import GetItemComment
+from endpoints.comments.getItemCommentInsert import GetItemCommentInsert
+from endpoints.comments.lostItemComment import LostItemComment
+from endpoints.comments.lostItemCommentInsert import LostItemCommentInsert
+
 from endpoints.categories.categoryGetItem import CategoryGetItem
 from endpoints.categories.categoryLostItem import CategoryLostItem
 from endpoints.categories.categoryCompleteItem import CategoryCompleteItem
@@ -42,6 +47,12 @@ api.add_resource(GetItemArticle, '/boards/getitems/<int:i_id>') # getitem 게시
 api.add_resource(LostItemInfo, '/boards/lostitems')   # losttitem 목록
 api.add_resource(LostItemInsert, '/boards/lostitems') # lostitem 추가
 api.add_resource(LostItemArticle, '/boards/lostitems/<int:i_id>') # lostitem 게시글 상세
+
+# Endpoints - comments
+api.add_resource(GetItemComment, '/boards/getitems/<int:i_id>/comments')    # getitem 게시글의 댓글 목록
+api.add_resource(GetItemCommentInsert, '/boards/getitems/<int:i_id>/comments')    # getitem 게시글의 댓글 추가
+api.add_resource(LostItemComment, '/boards/lostitems/<int:i_id>/comments')    # getitem 게시글의 댓글 목록
+api.add_resource(LostItemCommentInsert, '/boards/lostitems/<int:i_id>/comments')    # lostitem 게시글의 댓글 추가
 
 # Endpoints - categories
 api.add_resource(CategoryGetItem, '/categories/<int:c_id>/getitems')
