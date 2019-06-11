@@ -10,6 +10,8 @@ from endpoints.test import Test
 from endpoints.users.signin import Signin
 from endpoints.users.signup import Signup
 
+from endpoints.search.search import Search
+
 from endpoints.boards.getItemInfo import GetItemInfo
 from endpoints.boards.getItemInsert import GetItemInsert
 from endpoints.boards.getItemArticle import GetItemArticle
@@ -63,6 +65,9 @@ api.add_resource(LostItemCommentInsert, '/boards/lostitems/<int:i_id>/comments')
 api.add_resource(CategoryGetItem, '/categories/<int:c_id>/getitems')
 api.add_resource(CategoryLostItem, '/categories/<int:c_id>/lostitems')
 api.add_resource(CategoryCompleteItem, '/categories/<int:c_id>/completeitems')
+
+# Endpoints - search
+api.add_resource(Search, '/search')
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
