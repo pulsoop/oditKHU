@@ -9,7 +9,7 @@ class GetItemInfo(Resource):
     def get(self):
         # db
         db = database.db_connect()  # connection객체
-        sql = 'SELECT u.id, title, content, register_date, get_date FROM getitem AS gi JOIN user AS u ON gi.u_id = u.u_id'
+        sql = 'SELECT u.id, title, register_date, get_date FROM getitem AS gi JOIN user AS u ON gi.u_id = u.u_id'
         curs = db.cursor()
         curs.execute(sql)
 
@@ -25,9 +25,8 @@ class GetItemInfo(Resource):
             temp = {
                 'author': row[0],
                 'title': row[1],
-                'content': row[2],
-                'register_date': row[3],
-                'get_date': row[4]
+                'register_date': row[2],
+                'get_date': row[3]
             }
             result['items'].append(temp)
         

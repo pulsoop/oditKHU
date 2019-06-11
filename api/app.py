@@ -12,8 +12,10 @@ from endpoints.users.signup import Signup
 
 from endpoints.boards.getItemInfo import GetItemInfo
 from endpoints.boards.getItemInsert import GetItemInsert
+from endpoints.boards.getItemArticle import GetItemArticle
 from endpoints.boards.lostItemInfo import LostItemInfo
 from endpoints.boards.lostItemInsert import LostItemInsert
+from endpoints.boards.lostItemArticle import LostItemArticle
 
 from endpoints.categories.categoryGetItem import CategoryGetItem
 from endpoints.categories.categoryLostItem import CategoryLostItem
@@ -36,8 +38,10 @@ api.add_resource(Signup, '/signup')
 # Endpoints - boards
 api.add_resource(GetItemInfo, '/boards/getitems')   # getitem 목록
 api.add_resource(GetItemInsert, '/boards/getitems') # getitem 추가
+api.add_resource(GetItemArticle, '/boards/getitems/<int:i_id>') # getitem 게시글 상세
 api.add_resource(LostItemInfo, '/boards/lostitems')   # losttitem 목록
 api.add_resource(LostItemInsert, '/boards/lostitems') # lostitem 추가
+api.add_resource(LostItemArticle, '/boards/lostitems/<int:i_id>') # lostitem 게시글 상세
 
 # Endpoints - categories
 api.add_resource(CategoryGetItem, '/categories/<int:c_id>/getitems')
