@@ -27,7 +27,7 @@ class GetItemInfo(Resource):
                 'author': row[0],
                 'title': row[1],
                 'register_date': row[2].strftime('%Y-%m-%d %H:%M:%S'),
-                'get_date': str(row[3]),
+                'get_date': row[2].strftime('%Y-%m-%d %H:%M:%S'),
                 'url': 'http://oditkhu.dasom.io/page/view.html?board=get&id={}'.format(row[4]),
                 'image': ''
             }
