@@ -37,7 +37,7 @@ class LostItemArticle(Resource):
         result['title'] = row[2]
         result['content'] = row[3]
         result['register_date'] = row[4].strftime('%Y-%m-%d %H:%M:%S')
-        result['lost_date'] = row[5].strftime('%Y-%m-%d %H:%M:%S')
+        result['lost_date'] = result['register_date']
 
         # comments
         sql = 'select u.id, u.name, allcomment.content from(select g_com.u_id, g_com.content from (lostcomment as g_com join lostitem as g_i on g_i.i_id = g_com.i_id) where g_i.i_id = 1) as allcomment join user as u on allcomment.u_id = u.u_id;'
