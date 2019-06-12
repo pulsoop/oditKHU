@@ -19,6 +19,7 @@ formEl.addEventListener(`submit`, (e) => {
       {
         console.log(response);
         console.log("success");
+        location.href = "../index.html";
       }      
     })
     //실패시 페이지 reload
@@ -27,6 +28,8 @@ formEl.addEventListener(`submit`, (e) => {
       {
         console.log(error);
         console.log("fail");
+        location.reload();
+        alert("다시 로그인해주세요!");
       }
       
     })

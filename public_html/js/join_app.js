@@ -17,8 +17,8 @@ formEl.addEventListener(`submit`, (e) => {
 	//axios를 이용해 post형식으로 서버에 정보 확인.
 	axios.post("/api/signup", {
 		id: $('input[name=id]').val(),
-		name: $('input[name=name]').val(),
 		password: $('input[name=password]').val(),
+		name: $('input[name=name]').val(),
 		email: $('input[name=email]').val(),
 		phone: $('input[name=phone]').val()
 	})
@@ -27,11 +27,12 @@ formEl.addEventListener(`submit`, (e) => {
 			{
 				console.log(response);
 				console.log("success");
+				//location.href = "./login.html";
 			}
 		})
 		//실패시 페이지 reload
 		.catch(function (error) {
-			if(error.status == 500)
+			if(error.status != 200)
 			{
 				console.log(error);
 				console.log("fail");
