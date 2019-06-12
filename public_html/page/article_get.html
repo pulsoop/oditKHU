@@ -87,8 +87,8 @@
     		<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="content" v-model="content"></textarea>
   		</div>
   		<div class="form-group col-md-12">
-    		<label for="exampleFormControlFile1">사진 첨부</label>
-    		<input type="file" class="form-control-file" id="exampleFormControlFile1" name="img">
+			<label for="exampleFormControlFile1">사진 첨부</label>
+			<input type="file" class="form-control-file" id="exampleFormControlFile1" name="img">
   		</div>
   		<div id="buttons" style="width:50px; float:right;">
 			<button class="btn yellow" v-on:click = "write_submit" type="submit">글쓰기</button>
@@ -110,6 +110,8 @@
 	
 	<!-- Custom JS -->
 	<script src="../js/custom.js"></script>
+
+	 <!-- File Upload -->
 	<script>
 		function openNav() {
   		document.getElementById("mySidenav").style.width = "250px";
@@ -135,7 +137,9 @@
 		      {
 		        console.log(response);
 		        console.log("success");
-		        location.href= "./board_get.html";
+				console.log(response.data.i_id);
+				uploadFile(response.data.i_id);
+				location.href= "./board_get.html";
 		      }      
 		    })
 		    //실패시 페이지 reload
@@ -148,6 +152,36 @@
 		      
 		    })
 		});
+
+		function uploadFile(i_id) {
+			console.log('들왔음');
+			var file = document.getElementById('exampleFormControlFile1');
+			var filedata = new FormData(); // FormData 인스턴스 생성
+
+			if (!file.value) {
+				console.log('파일 없음 빠져나옴.');
+				return; // 파일이 없는 경우 빠져나오기
+			}
+
+			filedata.append('uploadfile', file.files[0]);
+			console.log(file.files[0]);
+
+			var _xml = new XMLHttpRequest();
+			_xml.open('POST', '/api/boards/getitems/' + i_id + '/images', true);
+			console.log('여기로 보냄 : ' + 'https://oditkhu.dasom.io/api/board/getitems/' + i_id + '/images');
+			_xml.onload = function(event) {
+				if (_xml.status == 200) {
+					console.log('200');
+					return true;
+				}
+				else {
+					console.log('200 아님.');
+					return false;
+				}
+			};
+
+			_xml.send(filedata);
+		};
 	</script>
 </body>
 </html>

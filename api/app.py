@@ -22,7 +22,9 @@ from endpoints.boards.lostItemArticle import LostItemArticle
 from endpoints.boards.lostItemComplete import LostItemComplete
 
 from endpoints.images.getItemImage import GetItemImage
+from endpoints.images.getItemImageUpload import GetItemImageUpload
 from endpoints.images.lostItemImage import LostItemImage
+from endpoints.images.lostItemImageUpload import LostItemImageUpload
 
 from endpoints.comments.getItemComment import GetItemComment
 from endpoints.comments.getItemCommentInsert import GetItemCommentInsert
@@ -35,6 +37,7 @@ from endpoints.categories.categoryCompleteItem import CategoryCompleteItem
 
 # Flask Setting
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 api = Api(app)
 cors = CORS(app, resources={
     r"/*": {"origin": "*"},
@@ -60,7 +63,9 @@ api.add_resource(LostItemComplete, '/boards/lostitems/<int:i_id>/complete') # lo
 
 # Endpoints - images
 api.add_resource(GetItemImage, '/boards/getitems/<int:i_id>/images')   # getitem 이미지 링크들
+api.add_resource(GetItemImageUpload, '/boards/getitems/<int:i_id>/images')   # getitem 이미지 링크들
 api.add_resource(LostItemImage, '/boards/lostitems/<int:i_id>/images') # lostitem 이미지 링크들
+api.add_resource(LostItemImageUpload, '/boards/lostitems/<int:i_id>/images')   # getitem 이미지 링크들
 
 # Endpoints - comments
 api.add_resource(GetItemComment, '/boards/getitems/<int:i_id>/comments')    # getitem 게시글의 댓글 목록
