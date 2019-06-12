@@ -10,7 +10,7 @@ class GetItemInfo(Resource):
     def get(self):
         # db
         db = database.db_connect()  # connection객체
-        sql = 'SELECT u.id, gi.title, gi.register_date, gi.get_date, gi.i_id, gimg.url FROM getitem AS gi JOIN user AS u ON gi.u_id = u.u_id LEFT OUTER JOIN getimage AS gimg ON gi.i_id = gimg.i_id ORDER BY gi.i_id;'
+        sql = 'SELECT u.id, gi.title, gi.register_date, gi.get_date, gi.i_id, gimg.url FROM getitem AS gi JOIN user AS u ON gi.u_id = u.u_id LEFT OUTER JOIN getimage AS gimg ON gi.i_id = gimg.i_id ORDER BY gi.i_id DESC;'
         curs = db.cursor()
         curs.execute(sql)
 
