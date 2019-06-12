@@ -10,7 +10,7 @@ class LostItemArticle(Resource):
     def get(self, i_id):
         # 게시글 데이터.
         db = database.db_connect()
-        sql = 'SELECT u.id as "author_id", u.name as "author_name", title, content, register_date, lost_date, gimag.url FROM lostitem AS gi JOIN user AS u ON gi.u_id = u.u_id JOIN lostimage AS gimag ON gi.i_id = gimag.i_id WHERE gi.i_id={};'.format(i_id)
+        sql = 'SELECT u.id as "author_id", u.name as "author_name", title, content, register_date, lost_date, gimag.url FROM lostitem AS gi JOIN user AS u ON gi.u_id = u.u_id LEFT OUTER JOIN lostimage AS gimag ON gi.i_id = gimag.i_id WHERE gi.i_id={};'.format(i_id)
         curs = db.cursor()
         curs.execute(sql)
 
