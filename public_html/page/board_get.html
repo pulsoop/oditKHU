@@ -74,8 +74,8 @@
 					<div class="container" style="max-width:100%">
 						<div class="row" id='row'>
 							<div v-for='article in articles' class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px;">
-								<div><img src="../img/items/no-image-icon.jpg" class="img-responsive"></div>
-								<div class="titlebox" id="app"><a href="{{article.url}}">{{article.title}}</a></div>
+								<div><img v-bind:src="article.image" class="img-responsive"></div>
+								<div class="titlebox" id="app"><a v-bind:href="article.url">{{article.title}}</a></div>
 							</div>
 						</div><!--/row-->
 					</div><!--/container-->
@@ -118,7 +118,8 @@
 								for (let temp in json.items) {
 									this.articles.push({
 										title: json.items[temp].title,
-										url: json.items[temp].url
+										url: json.items[temp].url,
+										image: json.items[temp].image
 									})
 								}
 							})

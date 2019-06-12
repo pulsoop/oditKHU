@@ -29,8 +29,12 @@ class GetItemInfo(Resource):
                 'register_date': row[2].strftime('%Y-%m-%d %H:%M:%S'),
                 'get_date': str(row[3]),
                 'url': 'http://oditkhu.dasom.io/page/view.html?board=get&id={}'.format(row[4]),
-                'image': 'http://oditkhu.dasom.io/img/items/' + row[5]
+                'image': ''
             }
+            if row[5] is not None:
+                temp['image'] = 'http://oditkhu.dasom.io/img/items/' + row[5]
+            else:
+                temp['image'] = 'http://oditkhu.dasom.io/img/items/no-image-icon.jpg'
             result['items'].append(temp)
         
         # db close - 연결 닫아
