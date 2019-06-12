@@ -22,6 +22,7 @@ class GetItemInsert(Resource):
         sql = 'INSERT INTO getitem(u_id, title, content, c_id) VALUES ({}, \'{}\', \'{}\', {})'.format(_u_id, _title, _content, _c_id)
         curs = db.cursor()
         curs.execute(sql)
+        inserted_id = curs.lastrowid
         db.commit()
 
-        return {'status': 200}
+        return {'status': 200, 'i_id': inserted_id}, 200
