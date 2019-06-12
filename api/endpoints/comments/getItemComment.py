@@ -15,7 +15,7 @@ class GetItemComment(Resource):
         }
 
         db = database.db_connect()
-        sql = 'select u.id, u.name, allcomment.content from(select g_com.u_id, g_com.content from (getcomment as g_com join getitem as g_i on g_i.i_id = g_com.i_id) where g_i.i_id = 1) as allcomment join user as u on allcomment.u_id = u.u_id;'
+        sql = 'select u.id, u.name, allcomment.content from(select g_com.u_id, g_com.content from (getcomment as g_com join getitem as g_i on g_i.i_id = g_com.i_id) where g_i.i_id = {}) as allcomment join user as u on allcomment.u_id = u.u_id;'.format(i_id)
         curs = db.cursor()
         curs.execute(sql)
 

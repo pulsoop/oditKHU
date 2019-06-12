@@ -21,6 +21,9 @@ from endpoints.boards.lostItemInsert import LostItemInsert
 from endpoints.boards.lostItemArticle import LostItemArticle
 from endpoints.boards.lostItemComplete import LostItemComplete
 
+from endpoints.images.getItemImage import GetItemImage
+from endpoints.images.lostItemImage import LostItemImage
+
 from endpoints.comments.getItemComment import GetItemComment
 from endpoints.comments.getItemCommentInsert import GetItemCommentInsert
 from endpoints.comments.lostItemComment import LostItemComment
@@ -54,6 +57,10 @@ api.add_resource(LostItemInfo, '/boards/lostitems')   # losttitem 목록
 api.add_resource(LostItemInsert, '/boards/lostitems') # lostitem 추가
 api.add_resource(LostItemArticle, '/boards/lostitems/<int:i_id>') # lostitem 게시글 상세
 api.add_resource(LostItemComplete, '/boards/lostitems/<int:i_id>/complete') # lostitem 게시글 완료 상태로 변경
+
+# Endpoints - images
+api.add_resource(GetItemImage, '/boards/getitems/<int:i_id>/images')   # getitem 이미지 링크들
+api.add_resource(LostItemImage, '/boards/lostitems/<int:i_id>/images') # lostitem 이미지 링크들
 
 # Endpoints - comments
 api.add_resource(GetItemComment, '/boards/getitems/<int:i_id>/comments')    # getitem 게시글의 댓글 목록
