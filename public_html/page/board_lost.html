@@ -31,11 +31,11 @@
 					<div class="navbar-header">
 						<div id="mySidenav" class="sidenav">
 							<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-							<a href="#">My page</a>
-							<a href="#">찾아줘KHU</a>
-							<a href="#">찾아가KHU</a>
-							<a href="#">해결했KHU</a>
-							<a href="#">분실물센터</a>
+							<a href="./mypage.html">My page</a>
+							<a href="./board_lost.html">찾아줘KHU</a>
+							<a href="./board_get.html">찾아가KHU</a>
+							<a href="./board_cmplt.html">해결했KHU</a>
+							<a href="./lostcen.html">분실물센터</a>
 						</div>
 						<div style="float: left; padding: 35px 0 0 10px;"><span style="font-size:30px;cursor:pointer" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></span> </div>
 						<div style="float: right;"><a id="brand-mobile" class="navbar-brand navbar-brand-center smoothScroll" href="#home">
@@ -108,7 +108,7 @@
 							fetch('/api/boards/lostitems')
 							.then((response) => {
 								if(response.ok) {
-								return response.json();
+									return response.json();
 								}
 								throw new Error('Network response was not ok');
 							})
@@ -121,7 +121,7 @@
 								}
 							})
 						}
-						});
+					});
 				</script>
 			</body>
 			</html>
