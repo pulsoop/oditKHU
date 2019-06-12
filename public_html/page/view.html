@@ -74,7 +74,7 @@
 			<div id="location">위치 : </div>
 			<div id="location_text">외국어대학 앞</div>
 			<div id="image" >
-				<img src="../img/wlqmfl.jpg">
+				<img v-bind:src="image">
 			</div>
 			<div id="content">{{ content }}</div>
 		</div>
@@ -150,7 +150,8 @@
 					title: "",
 					name: "",
 					date: "",
-					content: ""
+					content: "",
+					image: ""
 				},
 				created() {
 					fetch('/api/boards/' + uri + '/' + i_id)
@@ -165,6 +166,7 @@
 						this.content = json.content;
 						this.date = json.register_date;
 						this.name = json.author_name;
+						this.image = json.image;
 					})
 				}
 			});
