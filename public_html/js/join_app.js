@@ -27,7 +27,7 @@ formEl.addEventListener(`submit`, (e) => {
 			{
 				console.log(response);
 				console.log("success");
-				//location.href = "./login.html";
+				location.href = "./login.html";
 			}
 		})
 		//실패시 페이지 reload
